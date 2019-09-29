@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">AuditAll</string>
+    <string name="audit">审核内容</string>
+    <string name="yesbutton">[ 符 &#160;&#160;&#160;&#160;&#160;合 ]   </string>
+    <string name="nobutton"> [ 不 符 合 ]</string>
+    <string name="pictureevidence">图片证据</string>
+    <string name="auditfind">审核发现</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+</resources>

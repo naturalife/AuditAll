@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SuperEditActivity">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/image08"
+            android:layout_width="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv08"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_margin="5dp"
+
+            android:text="审核范围"
+            android:layout_toRightOf="@+id/image08"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"/>
+        <ImageView
+            android:id="@+id/image18"
+            android:layout_width="10dp"
+            android:layout_toRightOf="@+id/tv08"
+            android:layout_height="match_parent" />
+
+        <Spinner
+            android:id="@+id/spinner_superEditActivity_area"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/image18"
+
+            android:dropDownWidth="match_parent"
+            android:dropDownVerticalOffset="40dp"
+            android:popupBackground="@drawable/backgroud0"
+            android:spinnerMode="dropdown"
+            android:theme="@style/SpinnerStyle" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/image07"
+            android:layout_width="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv07"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_margin="5dp"
+
+            android:text="审核层级"
+            android:layout_toRightOf="@+id/image07"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"/>
+        <ImageView
+            android:id="@+id/image17"
+            android:layout_width="10dp"
+            android:layout_toRightOf="@+id/tv07"
+            android:layout_height="match_parent" />
+
+        <Spinner
+            android:id="@+id/spinner_superEditActivity_class"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/image17"
+
+            android:dropDownWidth="match_parent"
+            android:dropDownVerticalOffset="40dp"
+            android:popupBackground="@drawable/backgroud0"
+            android:spinnerMode="dropdown"
+            android:theme="@style/SpinnerStyle" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/image09"
+            android:layout_width="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv09"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_margin="5dp"
+
+            android:text="审核项目"
+            android:layout_toRightOf="@+id/image09"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"/>
+        <ImageView
+            android:id="@+id/image19"
+            android:layout_width="10dp"
+            android:layout_toRightOf="@+id/tv09"
+            android:layout_height="match_parent" />
+
+        <Spinner
+            android:id="@+id/spinner_superEditActivity_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/image19"
+
+            android:dropDownWidth="match_parent"
+            android:dropDownVerticalOffset="40dp"
+            android:popupBackground="@drawable/backgroud0"
+            android:spinnerMode="dropdown"
+            android:theme="@style/SpinnerStyle" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/image01"
+            android:layout_width="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv01"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_margin="20dp"
+
+            android:text="序号"
+            android:layout_toRightOf="@+id/image01"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"/>
+        <ImageView
+            android:id="@+id/image02"
+            android:layout_width="10dp"
+            android:layout_toRightOf="@+id/tv01"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/image02"
+            android:padding="5dp"
+            android:text="审核项目"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/image11"
+            android:layout_width="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv12"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_margin="20dp"
+
+            android:text="   1"
+            android:layout_toRightOf="@+id/image11"
+            android:layout_centerInParent="true" />
+        <ImageView
+            android:id="@+id/image12"
+            android:layout_width="20dp"
+            android:layout_toRightOf="@+id/tv12"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:id="@+id/editText_superEditActivity01"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/image12"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:lines="4"
+            android:inputType="text"
+            android:imeOptions="actionNext"
+            android:background="@drawable/textviewborder"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/image21"
+            android:layout_width="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv22"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_margin="20dp"
+
+            android:text="   2"
+            android:layout_toRightOf="@+id/image21"
+            android:layout_centerInParent="true" />
+        <ImageView
+            android:id="@+id/image22"
+            android:layout_width="20dp"
+            android:layout_toRightOf="@+id/tv22"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:id="@+id/editText_superEditActivity02"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/image22"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:lines="4"
+            android:inputType="text"
+            android:imeOptions="actionNext"
+            android:background="@drawable/textviewborder"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/image31"
+            android:layout_width="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv32"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_margin="20dp"
+
+            android:text="   3"
+            android:layout_toRightOf="@+id/image31"
+            android:layout_centerInParent="true" />
+        <ImageView
+            android:id="@+id/image32"
+            android:layout_width="20dp"
+            android:layout_toRightOf="@+id/tv32"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:id="@+id/editText_superEditActivity03"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/image32"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:lines="4"
+            android:inputType="text"
+            android:imeOptions="actionNext"
+            android:background="@drawable/textviewborder"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/image41"
+            android:layout_width="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv42"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_margin="20dp"
+
+            android:text="   4"
+            android:layout_toRightOf="@+id/image41"
+            android:layout_centerInParent="true" />
+        <ImageView
+            android:id="@+id/image42"
+            android:layout_width="20dp"
+            android:layout_toRightOf="@+id/tv42"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:id="@+id/editText_superEditActivity04"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/image42"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:lines="4"
+            android:inputType="text"
+            android:imeOptions="actionNext"
+            android:background="@drawable/textviewborder"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/image51"
+            android:layout_width="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv52"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_margin="20dp"
+
+            android:text="   5"
+            android:layout_toRightOf="@+id/image51"
+            android:layout_centerInParent="true" />
+        <ImageView
+            android:id="@+id/image52"
+            android:layout_width="20dp"
+            android:layout_toRightOf="@+id/tv52"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:id="@+id/editText_superEditActivity05"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/image52"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:lines="4"
+            android:inputType="text"
+            android:imeOptions="actionNext"
+            android:background="@drawable/textviewborder"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/image61"
+            android:layout_width="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv62"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_margin="20dp"
+
+            android:text="   6"
+            android:layout_toRightOf="@+id/image61"
+            android:layout_centerInParent="true" />
+        <ImageView
+            android:id="@+id/image62"
+            android:layout_width="20dp"
+            android:layout_toRightOf="@+id/tv62"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:id="@+id/editText_superEditActivity06"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/image62"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:lines="4"
+            android:inputType="text"
+            android:imeOptions="actionDone"
+            android:background="@drawable/textviewborder"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button_superEditActivity_finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="完成并上传后，继续填写"
+        android:layout_margin="5dp"/>
+    <Button
+        android:id="@+id/button_superEditActivity_quite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="退出程序"
+        android:layout_margin="5dp"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+</ScrollView>

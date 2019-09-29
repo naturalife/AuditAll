@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroud0"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin">
+
+    <Button
+        android:id="@+id/button_loginActivity_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="64dp"
+        android:enabled="true"
+        android:text="开始审核"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rl5" />
+
+    <RelativeLayout
+        android:id="@+id/rl3"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rl2">
+
+
+        <EditText
+            android:id="@+id/editText_loginActivity_auditAim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/image5"
+            android:hint="请输入审核班组/工段 "
+
+            android:selectAllOnFocus="true"
+            android:imeOptions="actionDone"
+            android:inputType="textCapWords"
+            android:textColor="@color/white"
+            android:theme="@style/MyEditText" />
+
+
+        <ImageView
+            android:id="@+id/image5"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/tv5"
+            android:background="@color/transparent" />
+
+        <TextView
+            android:id="@+id/tv5"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:text="对    象|"
+            android:textColor="@color/dark_blue"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+
+
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rl1">
+
+
+        <EditText
+            android:id="@+id/editText_loginActivity_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/image2"
+            android:hint="请输入密码 "
+            android:imeActionLabel=" 请输入密码"
+
+            android:imeOptions="actionNext"
+            android:inputType="textPassword"
+            android:selectAllOnFocus="true"
+            android:textColor="@color/white"
+            android:theme="@style/MyEditText" />
+
+
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/tv2"
+            android:background="@color/transparent" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:text="密    码|"
+            android:textColor="@color/dark_blue"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <EditText
+            android:id="@+id/editText_loginActivity_userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/image1"
+
+            android:hint="请输入用户名"
+            android:inputType="textEmailAddress"
+
+            android:selectAllOnFocus="true"
+            android:textColor="@color/white"
+            android:theme="@style/MyEditText" />
+
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/tv1"
+            android:background="@color/transparent" />
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:text="用户名|"
+            android:textColor="@color/dark_blue"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl4"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rl3">
+
+        <ImageView
+            android:id="@+id/image3"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/tv3"
+            android:background="@color/transparent" />
+
+        <Spinner
+            android:id="@+id/spinner_loginActivity_class"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/image3"
+
+            android:dropDownWidth="match_parent"
+            android:dropDownVerticalOffset="40dp"
+            android:popupBackground="@drawable/backgroud0"
+            android:spinnerMode="dropdown"
+            android:theme="@style/SpinnerStyle" />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:text="范    围|"
+            android:textColor="@color/dark_blue"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl5"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rl4">
+
+        <ImageView
+            android:id="@+id/image4"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/tv4"
+            android:background="@color/transparent" />
+
+        <Spinner
+            android:id="@+id/spinner_loginActivity_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/image4"
+
+            android:dropDownWidth="match_parent"
+            android:dropDownVerticalOffset="40dp"
+            android:popupBackground="@drawable/backgroud0"
+            android:spinnerMode="dropdown"
+            android:theme="@style/SpinnerStyle" />
+
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:text="项    目|"
+            android:textColor="@color/dark_blue"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
