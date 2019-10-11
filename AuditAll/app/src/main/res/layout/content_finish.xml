@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:lines="6" />
+        android:lines="16" />
 
     <ImageView
         android:id="@+id/imageView_finishActivity_quit"
@@ -33,9 +33,6 @@
         android:textSize="20sp"
         android:text="谢  谢"
         android:textColor="@android:color/holo_orange_dark" />
-
-
-
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

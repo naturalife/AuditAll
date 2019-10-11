@@ -172,9 +172,9 @@ public class ExcelUtil {
             sheet.setRowView(6, 350);
 
             //设置列宽
-            sheet.setColumnView(3, 26);
-            sheet.setColumnView(4, 26);
-            sheet.setColumnView(6, 26);
+            sheet.setColumnView(3, 16);
+            sheet.setColumnView(4, 16);
+            sheet.setColumnView(6, 16);
 
             workbook.write();
         } catch (Exception e) {
@@ -486,6 +486,7 @@ public class ExcelUtil {
     }
 
 
+
     public static int length(String value) {
         int valueLength = 0;
         String chinese = "[\u0391-\uFFE5]";
@@ -504,4 +505,84 @@ public class ExcelUtil {
         }
         return valueLength;
     }
+
+    @SuppressWarnings("unchecked")
+    public static void writeAllAuditToExcel1(List<AuditInfo> auditInfoList, List<String> auditItemList, String fileName) {
+        if (auditInfoList != null && auditInfoList.size() > 0) {
+            WritableWorkbook writebook = null;
+            InputStream in = null;
+            Workbook workbook;
+            try {
+                WorkbookSettings setEncode = new WorkbookSettings();
+                setEncode.setEncoding(UTF8_ENCODING);
+
+                in = new FileInputStream(new File(fileName));//打开输入流
+                workbook = Workbook.getWorkbook(in);//获得Excel
+                writebook = Workbook.createWorkbook(new File(fileName), workbook);//打开文件
+                WritableSheet sheet = writebook.getSheet(0);//获得第一个工作簿
+
+                for (int j = 0; j < auditInfoList.size(); j++) {//
+
+                    AuditInfo mAudit = (AuditInfo) auditInfoList.get(j);//获得数据
+                    List<String> list = new ArrayList<>();//添加数据至list
+                    list.add(String.valueOf(mAudit.getId() + 1));//list[0]第一列数据
+                    list.add(auditItemList.get(j));//list[1]第二列数据
+
+
+                    if (null != String.valueOf(mAudit.getAuditResult())) {
+                        list.add(String.valueOf(mAudit.getAuditResult()));
+                    } else {
+                        list.add("-");
+                    }//list[2]第三列数据
+
+                    if (null != mAudit.getAuditFind()) {
+                        list.add(mAudit.getAuditFind());
+                    } else {
+                        list.add("-");
+                    }//list[3]第四列数据
+
+                    for (int i = 0; i < list.size(); i++) {
+//                        Cell cell = sheet.getCell(i, j + 1);//获取单元格
+//                        if (cell.getType() != CellType.EMPTY) {
+                        sheet.addCell(new Label(i, j + 7, list.get(i), arial12format));//数据添加至表格
+                        if (list.get(i) != null) {
+                            if (length(list.get(i)) <= 3) {
+                                //设置列宽
+                                sheet.setColumnView(i, list.get(i).length() + 8);
+                            } else {
+                                sheet.setColumnView(i, list.get(i).length() + 12);
+                            }
+                        }
+                        //设置行高
+                        sheet.setRowView(j + 7, 1200);
+
+                    }//单元格判空
+                    sheet.setColumnView(3,16);
+                }
+                writebook.write();//写入excel
+                workbook.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (writebook != null) {
+                    try {
+                        writebook.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (in != null) {
+                    try {
+                        in.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
 }

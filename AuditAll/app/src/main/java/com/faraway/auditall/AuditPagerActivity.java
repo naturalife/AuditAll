@@ -1,14 +1,8 @@
 package com.faraway.auditall;
 
-import android.annotation.TargetApi;
-import android.app.AlertDialog;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-import android.view.View;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -30,6 +24,7 @@ import com.faraway.auditall.Utils.FileUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ${Faraway}
@@ -55,15 +50,18 @@ public class AuditPagerActivity extends FragmentActivity {
     private List<AuditItem> auditItemList;
     private List<AuditInfo> auditInfoList;
 
+    private Map<String, List<String>> auditItemMap;
+
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initialDao();//初始化数据库
+        toast = new Toast(this);
 
-//        List<File> sessio = ((App) getApplication()).getAllPictureFilePngList();
+        auditItemMap = ((App) getApplication()).getAuditItemMap();
 
-        //                    Log.d("HHH", "AuditPagerActivity" + "-->" + "onPageScrolled" + "-->" + position);
 
         basicInfoList = new ArrayList<>();
         auditItemList = new ArrayList<>();
@@ -75,6 +73,8 @@ public class AuditPagerActivity extends FragmentActivity {
             idAuditItem = basicInfoList.get(0).getAuditItemNum();
         }
 
+        Log.d("HHH", "AuditPagerActivity" + "-->" + "onPageScrolled" + "-->" + auditItemMap.get(String.valueOf(idAuditItem)).size());
+        Log.d("HHH", "AuditPagerActivity" + "-->" + "onPageScrolled" + "-->" + idAuditItem);
         getAuditItemList();
 
         //删除以往审核数据
@@ -94,7 +94,8 @@ public class AuditPagerActivity extends FragmentActivity {
 
             @Override
             public int getCount() {
-                return auditItemList.size();
+                return auditItemMap.get(String.valueOf(idAuditItem)).size();
+//                return auditItemList.size();
             }
         });
 
@@ -102,12 +103,17 @@ public class AuditPagerActivity extends FragmentActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
-                if (positionOffset> 0.6) {
+                if (positionOffset > 0.6) {
                     getAuditInfoList();
-                    boolean tempb = (auditInfoList.get(position).getYesNumber()>0) ||
-                            (auditInfoList.get(position).getNoNumber())>0;
-                    if (!tempb){
-                        Toast.makeText(AuditPagerActivity.this,"第"+(position+1)+"页，未判断符合性",Toast.LENGTH_SHORT).show();
+                    boolean tempb = (auditInfoList.get(position).getYesNumber() > 0) ||
+                            (auditInfoList.get(position).getNoNumber()) > 0;
+                    if (!tempb) {
+                        toast.makeText(AuditPagerActivity.this, "第" + (position + 1) + "页，未判断符合性", Toast.LENGTH_SHORT).show();
+                    } else {
+
+                        if (toast != null) {
+                            toast.cancel();
+                        }
                     }
                 }
             }

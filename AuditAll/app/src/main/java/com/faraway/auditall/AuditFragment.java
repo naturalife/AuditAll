@@ -60,6 +60,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author ${Faraway}
@@ -124,10 +125,12 @@ public class AuditFragment extends Fragment implements View.OnClickListener {
 
     private List<AuditInfo> auditInfoList;
     private List<AuditItem> auditItemList;
+    private List<String> tempAuditItemList;
     private List<AuditPhotos> auditPhotoList;//已选择图片存放的List
     private List<AuditPhotos> totalAuditPhotoList;//已选择图片存放的List
     private List<BasicInfo> basicInfoList;
     private ArrayList<String> mPictureList;//传到Bundle的list
+    private Map<String, List<String>> auditItemMap;
 
     private Context mContext;
     private AlertDialog alertDialog;
@@ -156,23 +159,31 @@ public class AuditFragment extends Fragment implements View.OnClickListener {
 
         initialView(v);//初始化控件
 
-        Log.d("AuditFragment", "AUDITFRAGMENT" + "-->" + "auditId" + "-->" + auditId);
+        Log.i("AuditFragment", "AUDITFRAGMENT" + "-->" + "auditId" + "-->" + auditId);
         renewAuditInfoList();//获得数据库数据至auditInfoList
 
         getBasicInfoList();//获得数据库数据至basicInforList(取得auditItemNum)
 
+        auditItemMap = ((App) getActivity().getApplication()).getAuditItemMap();
 
         //获得审核项目对应的id:idAuditItem
         if (basicInfoList.size() > 0) {
             idAuditItem = basicInfoList.get(0).getAuditItemNum();
         }
 
+
+        tempAuditItemList = auditItemMap.get(String.valueOf(idAuditItem));
+
         getAuditItemList();//获得数据库数据至auditItemList
 
+
         //初始化审核问题textView_question，从auditInfoList中获取；
-        if (auditItemList.size() > 0) {
-            stringAuditItem = auditItemList.get(auditId).getAuditItem();
-            textView_question.setText((auditId + 1) + "-" + " " + (auditItemList.get(auditId).getAuditItem()));
+        if (tempAuditItemList.size() > 0) {
+            stringAuditItem = tempAuditItemList.get(auditId);
+
+            Log.d("HHH", "AUDITFRAGMENT" + "-->" + "stringAuditItem" + "-->" + stringAuditItem);
+
+            textView_question.setText((auditId + 1) + "-" + " " + tempAuditItemList.get(auditId));
         }
 
 
@@ -211,7 +222,7 @@ public class AuditFragment extends Fragment implements View.OnClickListener {
                         }
                     }
                     numberFinish = numberYes + numberNo;
-                    String proceed = (numberFinish) + "/" + auditInfoList.size();
+                    String proceed = (numberFinish) + "/" + tempAuditItemList.size();
 
                     basicInfo.setId(2L);
                     basicInfo.setTotalYesNumber(numberYes);
@@ -235,7 +246,6 @@ public class AuditFragment extends Fragment implements View.OnClickListener {
                     numberYes = 0;
                     numberNo = 0;
 
-
                     //更新数据库auditInfoDao与auditInfoList
                     renewAuditInfoList();
 
@@ -248,7 +258,7 @@ public class AuditFragment extends Fragment implements View.OnClickListener {
                         }
                     }
                     numberFinish = numberYes + numberNo;
-                    String proceed = (numberFinish) + "/" + auditInfoList.size();
+                    String proceed = (numberFinish) + "/" + tempAuditItemList.size();
 
                     basicInfo.setId(2L);
                     basicInfo.setTotalYesNumber(numberYes);
@@ -472,7 +482,7 @@ public class AuditFragment extends Fragment implements View.OnClickListener {
         auditPhotoList = new ArrayList<>();//已选择图片存放的List
         basicInfoList = new ArrayList<>();
         mPictureList = new ArrayList<>();//传到Bundle的list
-
+        tempAuditItemList = new ArrayList<>();
         auditPhotos = new AuditPhotos();
 
     }
@@ -495,12 +505,12 @@ public class AuditFragment extends Fragment implements View.OnClickListener {
 
                 boolean tempb = false;
                 //在最后一页，将数据写入excel,保存并分享文件
-                if (auditId == (auditItemList.size() - 1)) {
+                if (auditId == (tempAuditItemList.size() - 1)) {
                     for (int j = 0; j < auditInfoList.size(); j++) {
                         tempb = (auditInfoList.get(j).getYesNumber() > 0) ||
                                 ((auditInfoList.get(j).getNoNumber()) > 0);
                         if (!tempb) {//判断符合性是否已经判断
-                            Toast.makeText(mContext, "P" + (j + 1) + "未判断符合性", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(mContext, "P" + (j + 1) + "未判断符合性", Toast.LENGTH_SHORT).show();
                             imageButton_save.setBackgroundResource(R.drawable.finishbefore);
                             imageButton_save.setEnabled(true);
                         }
@@ -515,7 +525,8 @@ public class AuditFragment extends Fragment implements View.OnClickListener {
                     Thread thread1 = new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            ExcelUtil.writeAllAuditToExcel(auditInfoList, auditItemList, filePathExcel);
+//                            ExcelUtil.writeAllAuditToExcel(auditInfoList, auditItemList, filePathExcel);
+                            ExcelUtil.writeAllAuditToExcel1(auditInfoList, tempAuditItemList, filePathExcel);
                         }
                     });
                     thread1.start();
@@ -524,7 +535,7 @@ public class AuditFragment extends Fragment implements View.OnClickListener {
                     Thread thread2 = new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            for (int i = 0; i < auditItemList.size(); i++) {
+                            for (int i = 0; i < tempAuditItemList.size(); i++) {
                                 List<AuditPhotos> tempList = new ArrayList();
                                 tempList = auditPhotosDao.queryBuilder().where(AuditPhotosDao.Properties.IdAuditPhotos.eq(i))
                                         .list();

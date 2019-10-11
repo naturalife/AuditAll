@@ -96,24 +96,24 @@ public class LoginActivity extends AppCompatActivity {
         auditInfoDao.deleteAll();//清空数据库
         auditPhotosDao.deleteAll();//清空数据库
 
-        DataBaseUtil util = new DataBaseUtil(this);
-        if (util.checkDataBase(dbName)) {
-            util.deleteDataBase(dbName);
-        }
-        if (util.checkDataBase(dbShmName)) {
-            util.deleteDataBase(dbShmName);
-        }
-        if (util.checkDataBase(dbWalName)) {
-            util.deleteDataBase(dbWalName);
-        }
-
-        try {
-            util.copyDataBase(dbName);
-            util.copyDataBase(dbShmName);
-            util.copyDataBase(dbWalName);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        DataBaseUtil util = new DataBaseUtil(this);
+//        if (util.checkDataBase(dbName)) {
+//            util.deleteDataBase(dbName);
+//        }
+//        if (util.checkDataBase(dbShmName)) {
+//            util.deleteDataBase(dbShmName);
+//        }
+//        if (util.checkDataBase(dbWalName)) {
+//            util.deleteDataBase(dbWalName);
+//        }
+//
+//        try {
+//            util.copyDataBase(dbName);
+//            util.copyDataBase(dbShmName);
+//            util.copyDataBase(dbWalName);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         initData();//初始化各类按钮等
 
@@ -305,8 +305,8 @@ public class LoginActivity extends AppCompatActivity {
         spinnerAreaList.add("冲压");
         spinnerAreaList.add("焊接");
         spinnerAreaList.add("剪板");
-        spinnerAreaList.add("工装");
-        spinnerAreaList.add("设备");
+        spinnerAreaList.add("钣金");
+        spinnerAreaList.add("质量");
         spinnerAreaList.add("物流");
         spinnerAreaList.add("请选择:审核范围");
     }
@@ -323,10 +323,10 @@ public class LoginActivity extends AppCompatActivity {
             } else if ((auditTarget.contains("剪")) || (auditTarget.contains("C")) || (auditTarget.contains("c"))) {
 //                auditTarget = "剪板";
                 auditAreaNum = 2;
-            } else if ((auditTarget.contains("工装")) || (auditTarget.contains("M")) || (auditTarget.contains("m"))) {
+            } else if ((auditTarget.contains("钣金")) || (auditTarget.contains("M")) || (auditTarget.contains("m"))) {
 //                auditTarget = "工装";
                 auditAreaNum = 3;
-            } else if ((auditTarget.contains("设备")) || (auditTarget.contains("E")) || (auditTarget.contains("e"))) {
+            } else if ((auditTarget.contains("质量")) || (auditTarget.contains("Q")) || (auditTarget.contains("q"))) {
 //                auditTarget = "设备";
                 auditAreaNum = 4;
             } else if ((auditTarget.contains("物流")) || (auditTarget.contains("L")) || (auditTarget.contains("l"))) {

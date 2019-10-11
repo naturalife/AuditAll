@@ -377,8 +377,8 @@ public class SuperEditActivity extends AppCompatActivity {
         spinnerAreaList.add("冲压");
         spinnerAreaList.add("焊接");
         spinnerAreaList.add("剪板");
-        spinnerAreaList.add("工装");
-        spinnerAreaList.add("设备");
+        spinnerAreaList.add("钣金");
+        spinnerAreaList.add("质量");
         spinnerAreaList.add("物流");
         spinnerAreaList.add("请选择:审核范围");
 
