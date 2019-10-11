@@ -38,21 +38,45 @@ public class InitialPageActivity extends AppCompatActivity {
     private String filePath = Environment.getExternalStorageDirectory() + "/AuditSomething";
 
     private int REQUEST_PERMISSION_CODE = 1000;
-    private AuditInfoDao auditInfoDao;
-    private AuditPhotosDao auditPhotosDao;
-    private BasicInfoDao basicInfoDao;
+
+//    private AuditInfoDao auditInfoDao;
+//    private AuditPhotosDao auditPhotosDao;
+//    private BasicInfoDao basicInfoDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initialpage);
-        initialDao();
-        basicInfoDao.deleteAll();
-        auditInfoDao.deleteAll();
-        auditPhotosDao.deleteAll();
+
+        Log.d("InitialPageActivity","isExit:"+000);
+
+
+//        initialDao();
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d("InitialPageActivity","onStart:"+111);
+        super.onStart();
         requestPermission();
 
     }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (intent != null) {
+            boolean isExit = intent.getBooleanExtra("TAG_EXIT", false);
+            Log.d("InitialPageActivity","isExit:"+isExit);
+            if (isExit) {
+                this.finish();
+                System.exit(0);
+            }
+        }
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -60,7 +84,7 @@ public class InitialPageActivity extends AppCompatActivity {
 
         if (requestCode == REQUEST_PERMISSION_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                FileUtils.deleteDir(filePath);
+                FileUtils.deleteDir(filePath);//删除excel文件夹
                 final Intent it = new Intent(this, LoginActivity.class); //你要转向的Activity
                 Timer timer = new Timer();
                 TimerTask task = new TimerTask() {
@@ -120,11 +144,11 @@ public class InitialPageActivity extends AppCompatActivity {
         }
     }
     //初始化数据库
-    private void initialDao() {
-        DaoSession daoSession = ((App) getApplication()).getDaoSession();
-        auditInfoDao = daoSession.getAuditInfoDao();
-        auditPhotosDao = daoSession.getAuditPhotosDao();
-        basicInfoDao = daoSession.getBasicInfoDao();
-    }
+//    private void initialDao() {
+//        DaoSession daoSession = ((App) getApplication()).getDaoSession();
+//        auditInfoDao = daoSession.getAuditInfoDao();
+//        auditPhotosDao = daoSession.getAuditPhotosDao();
+//        basicInfoDao = daoSession.getBasicInfoDao();
+//    }
 
 }

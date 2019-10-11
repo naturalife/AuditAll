@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
@@ -46,6 +52,7 @@
             android:layout_toRightOf="@+id/image5"
             android:hint="请输入审核班组/工段 "
 
+
             android:selectAllOnFocus="true"
             android:imeOptions="actionDone"
             android:inputType="textCapWords"
@@ -72,10 +79,6 @@
     </RelativeLayout>
 
 
-
-
-
-
     <RelativeLayout
         android:id="@+id/rl2"
         android:layout_width="match_parent"
@@ -100,6 +103,7 @@
             android:imeOptions="actionNext"
             android:inputType="textPassword"
             android:selectAllOnFocus="true"
+
             android:textColor="@color/white"
             android:theme="@style/MyEditText" />
 
@@ -143,7 +147,7 @@
 
             android:hint="请输入用户名"
             android:inputType="textEmailAddress"
-
+            android:focusableInTouchMode="true"
             android:selectAllOnFocus="true"
             android:textColor="@color/white"
             android:theme="@style/MyEditText" />
@@ -253,7 +257,5 @@
     </RelativeLayout>
 
 
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

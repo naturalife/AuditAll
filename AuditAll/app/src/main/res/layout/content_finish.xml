@@ -9,19 +9,33 @@
         android:layout_height="wrap_content"
         android:lines="6" />
 
+    <ImageView
+        android:id="@+id/imageView_finishActivity_quit"
+        android:layout_gravity="center"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/applogodraw"/>
 
     <TextView
         android:id="@+id/finish_tv1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:text="审核完成"
         android:layout_margin="5dp"
-        android:lines="4"
-        android:textColor="@android:color/holo_red_dark" />
-
-    <Button
-        android:id="@+id/btn_content_finish"
+        android:textColor="@android:color/holo_orange_dark" />
+    <TextView
+        android:id="@+id/finish_tv2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="完成审核并发送报告"/>
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:text="谢  谢"
+        android:textColor="@android:color/holo_orange_dark" />
+
+
+
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>

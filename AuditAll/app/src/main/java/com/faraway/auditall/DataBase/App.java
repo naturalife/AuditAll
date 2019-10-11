@@ -6,7 +6,9 @@ import org.greenrobot.greendao.database.Database;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Fan
@@ -16,12 +18,14 @@ import java.util.List;
  **/
 public class App extends Application {
     private DaoSession daoSession;
-    private  List<File> allPictureFilePngList;
+    private  List<String> auditItemList;
+    private Map<String,ArrayList<String>> auditItemMap;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        allPictureFilePngList = new ArrayList<>();
+        auditItemList = new ArrayList<>();
+        auditItemMap = new HashMap<>();//返回的Map
 
         // regular SQLite database
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "notes-db");
@@ -39,7 +43,7 @@ public class App extends Application {
         return daoSession;
     }
 
-    public List<File> getAllPictureFilePngList(){
-        return allPictureFilePngList;
+    public Map<String,ArrayList<String>> getAuditItemMap(){
+        return auditItemMap;
     }
 }

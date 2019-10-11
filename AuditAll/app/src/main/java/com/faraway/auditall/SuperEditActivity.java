@@ -1,5 +1,6 @@
 package com.faraway.auditall;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -53,6 +54,7 @@ public class SuperEditActivity extends AppCompatActivity {
     private List<String> spinnerClassList;
     private List<String> spinnerContentList;
     private List<String> auditItemList;
+    private List<AuditItem> auditItemListBefore;
 
 
     private String auditArea;
@@ -81,8 +83,12 @@ public class SuperEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_super_edit);
 
         initData();
+
         initialDao();
 
+        getAuditItemListBefore();
+
+        buttonQuit.setEnabled(false);
         initSpinnerArea();
         initSpinnerClass();
         initSpinnerContent();
@@ -101,12 +107,11 @@ public class SuperEditActivity extends AppCompatActivity {
             public void onClick(View view) {
                 j++;
 
-                boolean a = ifStringNull(stringAuditItem1) && ifStringNull(stringAuditItem2) && ifStringNull(stringAuditItem3)
-                        && ifStringNull(stringAuditItem4) && ifStringNull(stringAuditItem5) && ifStringNull(stringAuditItem6)
-                        && ifStringNull(auditArea) && ifStringNull(auditClass) && ifStringNull(auditContent);
+                boolean a = ifStringNull(stringAuditItem1) && ifStringNull(auditArea)
+                        && ifStringNull(auditClass) && ifStringNull(auditContent);
 
                 if (a) {
-                    if (j < 8) {
+                    if (j < 8) {//共8页
                         textView1.setText(" " + (1 + j * 6));
                         textView2.setText(" " + (j * 6 + 2));
                         textView3.setText(" " + (j * 6 + 3));
@@ -130,6 +135,8 @@ public class SuperEditActivity extends AppCompatActivity {
                         editText5.setText(null);
                         editText6.setText(null);
 
+                        buttonQuit.setEnabled(true);
+
                     } else {
                         Toast.makeText(SuperEditActivity.this, "已达到系统上限，无法继续添加", Toast.LENGTH_SHORT).show();
                     }
@@ -148,9 +155,19 @@ public class SuperEditActivity extends AppCompatActivity {
 
                 getIdAuditItem();
 
+
+                for (AuditItem auditItem : auditItemListBefore){
+                    if (auditItem.getIdAuditItem()==idAuditItem){
+                        auditItemDao.delete(auditItem);
+                    }
+                }
+
+
                 addAuditItemDao(0L + idAuditItem);
 
-//                Log.d("HHH", "SuperEditActivity" + "--->" + "idAuditItem" + "--->" + idAuditItem);
+//                Intent intent = new Intent(SuperEditActivity.this,InitialPageActivity.class);
+//                intent.putExtra("TAG_EXIT", true);
+//                startActivity(intent);
 
             }
         });
@@ -184,10 +201,11 @@ public class SuperEditActivity extends AppCompatActivity {
     private void addAuditItemDao(Long num) {
         if (auditItemList.size() > 0) {
             for (int i = 0; i < auditItemList.size(); i++) {
-                auditItem.setId(0l + i);
+                auditItem.setId(0L+i+auditItemListBefore.size()+22);
+                Log.d("HHH","auditItemListBefore"+auditItemListBefore.size());
                 auditItem.setAuditItem(auditItemList.get(i));
                 auditItem.setIdAuditItem(num);
-                auditItemDao.insertOrReplace(auditItem);
+                auditItemDao.insert(auditItem);
             }
         }
     }
@@ -351,6 +369,7 @@ public class SuperEditActivity extends AppCompatActivity {
         spinnerContent = findViewById(R.id.spinner_superEditActivity_content);
 
         auditItemList = new ArrayList<>();
+        auditItemListBefore = new ArrayList<>();
     }
 
     private void initSpinnerArea() {
@@ -374,6 +393,7 @@ public class SuperEditActivity extends AppCompatActivity {
 //                editText_auditAim.clearFocus();
 //                editText_auditAim.setCursorVisible(false);
                 auditArea = arrAdapter2.getItem(i).toString();
+
             }
 
             @Override
@@ -403,6 +423,7 @@ public class SuperEditActivity extends AppCompatActivity {
 //                editText_auditAim.clearFocus();
 //                editText_auditAim.setCursorVisible(false);
                 auditClass = arrAdapter2.getItem(i).toString();
+
             }
 
             @Override
@@ -431,6 +452,7 @@ public class SuperEditActivity extends AppCompatActivity {
 //                editText_auditAim.clearFocus();
 //                editText_auditAim.setCursorVisible(false);
                 auditContent = arrAdapter2.getItem(i).toString();
+
             }
 
             @Override
@@ -443,8 +465,14 @@ public class SuperEditActivity extends AppCompatActivity {
     //初始化数据库
     private void initialDao() {
         DaoSession daoSession = ((App) getApplication()).getDaoSession();
+        daoSession.clear();
         auditItemDao = daoSession.getAuditItemDao();
         auditItem = new AuditItem();
+    }
+
+    private void getAuditItemListBefore(){
+        if (auditItemDao!=null)
+            auditItemListBefore = auditItemDao.queryBuilder().list();
     }
 
 }

@@ -76,7 +76,6 @@ public class ExcelUtil {
             arial12font = new WritableFont(WritableFont.ARIAL, 10, WritableFont.NO_BOLD);
             arial12font.setColour(Colour.BLACK);
             arial12format = new WritableCellFormat(arial12font);
-            arial12format.setAlignment(Alignment.CENTRE);
             arial12format.setWrap(true);
             //对齐格式
             arial12format.setAlignment(Alignment.CENTRE);
@@ -87,7 +86,7 @@ public class ExcelUtil {
 
             arial11font = new WritableFont(WritableFont.ARIAL, 10);
             arial11format = new WritableCellFormat(arial11font);
-            arial11format.setWrap(true);
+//            arial11format.setWrap(true);
             //对齐格式
             arial11format.setAlignment(Alignment.CENTRE);
             arial11format.setVerticalAlignment(VerticalAlignment.CENTRE);
@@ -122,7 +121,6 @@ public class ExcelUtil {
 
             basicInfo.setTotalYesNumber(basicInfoList.get(1).getTotalYesNumber());
             basicInfo.setTotalNoNumber(basicInfoList.get(1).getTotalNoNumber());
-//            Log.d("HHH", "" + "-->" + basicInfo.getTotalYesNumber());
 
         }
 
@@ -172,7 +170,11 @@ public class ExcelUtil {
             sheet.setRowView(3, 350);
             sheet.setRowView(4, 350);
             sheet.setRowView(6, 350);
-            sheet.setColumnView(4, 16);
+
+            //设置列宽
+            sheet.setColumnView(3, 26);
+            sheet.setColumnView(4, 26);
+            sheet.setColumnView(6, 26);
 
             workbook.write();
         } catch (Exception e) {
@@ -190,10 +192,11 @@ public class ExcelUtil {
 
     //audit图片写入excel
     @SuppressWarnings("unchecked")
-    public static void writePictureToExcel(List<AuditPhotos> photoList, int auditId, String filePath, String fileName, int startColum) {
+    public static void writePictureToExcel(List<AuditPhotos> photoList, String filePath, int auditId, String fileName, int startColum) {
         if (photoList != null && photoList.size() > 0) {
             WritableWorkbook writebook = null;
             InputStream in = null;
+            startColum = 5;
 
             try {
                 WorkbookSettings setEncode = new WorkbookSettings();
@@ -217,6 +220,8 @@ public class ExcelUtil {
                     //图片文件转PNG（存于filePicture）
                     ImageUtils.saveBitmapAsPng(photoList.get(i).getPhotoPath(), filePicture);
 
+                    Log.d("AuditFragment", "EXCELUTI" + "-->" + auditId+"--"+photoList.get(i).getPhotoPath());
+
                     //新建图片文件list（fileList）,插入excel用
                     List<File> fileList = new ArrayList<>();
 
@@ -235,14 +240,15 @@ public class ExcelUtil {
 
                     // 清空filePathPic
                     filePathPic = "";
+
+                    Log.i("AuditFragment","P"+"-"+auditId+"-"+"filePicture:"+filePicture+"写入成功");
                 }
                 writebook.write();//写入excel
-
-
 
                 workbook.close();
 
             } catch (Exception e) {
+                Log.i("AuditFragment","P"+"-"+auditId+"-"+"filePicture:"+"写入失败");
                 e.printStackTrace();
             } finally {
                 if (writebook != null) {

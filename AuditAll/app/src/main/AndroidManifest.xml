@@ -12,12 +12,13 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SuperEditActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".InitialPageActivity"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,8 +31,8 @@
             android:label="AuditPagerActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Finish"
-            android:label="Finish"
+            android:name=".FinishActivity"
+            android:label="FinishActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SingleFragmentActivity"
@@ -51,17 +52,15 @@
             android:authorities="com.faraway.auditall.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
-            <!--tools:replace="android:authorities">-->
+
+            <!-- tools:replace="android:authorities"> -->
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
-
-
     </application>
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 </manifest>

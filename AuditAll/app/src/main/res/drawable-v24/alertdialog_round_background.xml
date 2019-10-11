@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <!--描边设置-->
-    <corners android:radius="150dp" />
+    <corners android:radius="20dp" />
 
     <!--填充设置-->
-    <solid android:color="@android:color/darker_gray" />
+    <solid android:color="@android:color/holo_green_dark" />
 
     <!--圆角设置-->
     <stroke
         android:width="1px"
-        android:color="@android:color/darker_gray" />
+        android:color="@android:color/holo_green_dark" />
 </shape>
